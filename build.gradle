@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'com.sophosgft'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    testImplementation group: 'com.intuit.karate', name: 'karate-junit5', version: '1.3.1'
+    implementation group: 'com.intuit.karate', name: 'karate-core', version: '1.3.1'
+    testImplementation group: 'com.intuit.karate', name: 'karate-apache', version: '0.9.6'
+
+    // Reporte Cucumber
+    implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.7.5'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task karateDebug(type: JavaExec){
+    classpath = sourceSets.test.runtimeClasspath
+    main = 'com.intuit.karate.cli.Main'
+
+}
